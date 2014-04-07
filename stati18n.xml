@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<stati18n>
+	<file>
+		<name>stati18n.css</name>
+		<minified>false</minified>
+	</file>
+
+	<language>
+
+	  <text id='hello-world'>
+		<translation lang='french'>Démonstration de Stati18n</translation>
+		<translation lang='english'>Stati18n demonstration</translation>
+	  </text>
+	  
+	  <text id='message'>
+		<translation lang='french'>Salut salut</translation>
+		<translation lang='english'>Hello hello</translation>
+	  </text>
+	  
+	</language>
+</stati18n>
