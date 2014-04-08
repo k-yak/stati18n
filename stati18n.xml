@@ -8,18 +8,18 @@
 
     <language>
         <title>
-            <translation lang='french'>Mon site</translation>
-            <translation lang='english'>My site</translation>
+            <translation lang='fr'>Mon site</translation>
+            <translation lang='en'>My site</translation>
         </title>
         
         <text id='hello-world'>
-            <translation lang='french'>Démonstration de Stati18n</translation>
-            <translation lang='english'>Stati18n demonstration</translation>
+            <translation lang='fr'>Démonstration de Stati18n</translation>
+            <translation lang='en'>Stati18n demonstration</translation>
         </text>
 
         <text id='message'>
-            <translation lang='french'>Salut salut</translation>
-            <translation lang='english'>Hello hello</translation>
+            <translation lang='fr'>Salut salut</translation>
+            <translation lang='en'>Hello hello</translation>
         </text>
 
     </language>

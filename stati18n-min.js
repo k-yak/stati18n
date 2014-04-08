@@ -4,4 +4,4 @@
  * Created by Florian Rotagnon
  * Licensed under MIT
  */
-$(document).ready(function(){var e=new Array;$(".stati18n-language-selector").each(function(){e.push(this.getAttribute("value"))});var t=e[0];$(".stati18n").addClass(t);$(".stati18n-language-selector").click(function(e){$("."+t).removeClass(t).addClass(this.getAttribute("value"));t=this.getAttribute("value")})})
+$(document).ready(function(){var e=navigator.language||navigator.userLanguage;var t=new Array;$(".stati18n-language-selector").each(function(){t.push(this.getAttribute("value"))});var n=t.indexOf(e);if(n>-1){p=t[n]}else p=t[0];$(".stati18n").addClass(p);$(".stati18n-language-selector").click(function(e){$("."+p).removeClass(p).addClass(this.getAttribute("value"));p=this.getAttribute("value")})})

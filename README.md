@@ -24,8 +24,8 @@ Edit XML file to store your data.
 	<language>
 
 		<text id='english'>
-			<translation lang='french'>Anglais</translation>
-			<translation lang='english'>English</translation>
+			<translation lang='fr'>Anglais</translation>
+			<translation lang='en'>English</translation>
 		</text>
 	</language>
 </stati18n>
@@ -44,19 +44,19 @@ The CSS file look like that (non-minified)
  * Licensed under MIT
  */
  
-.stati18n.french.s18n-english:after {
+.stati18n.fr.s18n-english:after {
     content: "Anglais";
 }
 
-.stati18n.english.s18n-english:after {
+.stati18n.en.s18n-english:after {
     content: "English";
 }
 
-.stati18n.french.s18n-french:after {
+.stati18n.fr.s18n-french:after {
     content: "Français";
 }
 
-.stati18n.english.s18n-french:after {
+.stati18n.en.s18n-french:after {
     content: "French";
 }
 
@@ -72,8 +72,8 @@ Add to your html file
 
 Use language switcher with class : "stati18n-language-selector" and value="language"
 ```
-<div class="stati18n-language-selector" value="english">English</div>
-<div class="stati18n-language-selector" value="french">French</div>
+<div class="stati18n-language-selector" value="en">English</div>
+<div class="stati18n-language-selector" value="fr">French</div>
 ```
 
 > **Tip:** The first language of the list will be the default language of your site. 

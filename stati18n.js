@@ -6,14 +6,19 @@
  */
  
 $( document ).ready(function() {
-	
+	var ul = navigator.language || navigator.userLanguage; 
 	var l = new Array();
 	
 	$('.stati18n-language-selector').each(function() {
 		l.push(this.getAttribute('value'));
 	});
 	
-	var p = l[0];
+	var i = l.indexOf(ul);
+	if( i > -1 )
+	{
+		p = l[i]
+	}
+	else p = l[0];
 	
 	$('.stati18n').addClass(p);
 			
