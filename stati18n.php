@@ -44,6 +44,30 @@ class FileManager{
 			
 			}
 		}
+        
+        if (isset($xml->language->title)) {
+            $title = $xml->language->title;
+            
+            foreach($title->translation as $translation)
+			{
+				$language = $translation['lang'];
+				$data = $translation[0];
+                
+			     if(!$minify)
+				{
+					fwrite($fp, "
+.stati18n.".$language.".s18n-title {
+    content: \"".$data."\";
+}
+");
+				}
+				else
+				{
+					fwrite($fp, ".stati18n.".$language.".s18n-title{content:\"".$data."\";}");
+				}
+			}
+        }
+
 				
 		fclose($fp);
 	}
