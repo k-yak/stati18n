@@ -104,8 +104,11 @@ class xmlToArrayParser {
 class FileManager{
 	public function getContent($fileName)
 	{
+		$opts = array('http' => array('header' => 'Accept-Charset: UTF-8, *;q=0'));
+		$context = stream_context_create($opts);
+
 		if(file_exists($fileName))
-			return file_get_contents($fileName);
+			return file_get_contents($fileName, false, $context);
 		else
 			throw new Exception("File not found : ".$fileName);
 	}
@@ -157,14 +160,20 @@ $fm = new FileManager();
 
 try{
 	$xml = $fm->getContent($argv[1]);
+
 	$domObj = new xmlToArrayParser($xml); 
 	$domArr = $domObj->array; 
-		 
-	if($domObj->parse_error) echo $domObj->get_xml_error(); 
+
+	if($domObj->parse_error)
+	{
+		echo $domObj->get_xml_error(); 
+		return;
+	}
 	else 
 	{
 		$fm->createFile($domArr);	
 	}
+	echo "Stati18n  : compilation success";
 }
 catch(Exception $e)
 {
