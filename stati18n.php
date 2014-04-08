@@ -23,7 +23,6 @@ class FileManager{
 		foreach($xml->language->text as $text)
 		{
 			$id = $text['id'];
-			print_r($text);
 
 			foreach($text->translation as $translation)
 			{
