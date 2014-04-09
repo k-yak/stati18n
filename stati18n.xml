@@ -7,11 +7,7 @@
     </file>
 
     <language>
-        <title>
-            <translation lang='fr'>Mon site</translation>
-            <translation lang='en'>My site</translation>
-        </title>
-        
+	
         <text id='hello-world'>
             <translation lang='fr'>Démonstration de Stati18n</translation>
             <translation lang='en'>Stati18n demonstration</translation>

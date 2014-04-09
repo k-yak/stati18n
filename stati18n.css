@@ -20,11 +20,3 @@
 .stati18n.en.s18n-message:after {
     content: "Hello hello";
 }
-
-.stati18n.fr.s18n-title {
-    content: "Mon site";
-}
-
-.stati18n.en.s18n-title {
-    content: "My site";
-}
