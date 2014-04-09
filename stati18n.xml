@@ -4,6 +4,7 @@
     <file>
         <name>stati18n.css</name>
         <minified>false</minified>
+		<insertion>before</insertion>
     </file>
 
     <language>
