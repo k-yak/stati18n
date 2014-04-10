@@ -23,6 +23,12 @@ class FileManager{
 		foreach($xml->language->text as $text)
 		{
 			$id = $text['id'];
+            $insertion = $text['insertion'];
+            if("before" != $insertion && "after" != $insertion)
+            {
+                // Defaut after
+                $insertion = "after";
+            }
 
 			foreach($text->translation as $translation)
 			{
@@ -32,14 +38,14 @@ class FileManager{
 				if(!$minify)
 				{
 					fwrite($fp, "
-.stati18n.".$language.".s18n-".$id.":after {
+.stati18n.".$language.".s18n-".$id.":".$insertion." {
     content: \"".$data."\";
 }
 ");
 				}
 				else
 				{
-					fwrite($fp, ".stati18n.".$language.".s18n-".$id.":after{content:\"".$data."\";}");
+					fwrite($fp, ".stati18n.".$language.".s18n-".$id.":".$insertion."{content:\"".$data."\";}");
 				}
 			
 			}
