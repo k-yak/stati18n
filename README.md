@@ -1,8 +1,23 @@
-stati18n	
+stati18n
 =====================
 
 
 **stati18n** is a simply tool to manage static pages internationalization. It is based on content property of CSS, creating CSS data file. To change language a basic script simply change class of each DOM element. 
+
+----------
+**News :**
+
+- Automatic detection of browser language
+- Add title tag management 
+- Add input value management
+- Choose between CSS before and after property in your XML file
+
+----------
+**Todo :**
+
+- Code refactoring
+- Referencing managment 
+- Cookie
 
 ----------
 #### demo : http://k-yak.github.io/one_page_presentation/
@@ -11,26 +26,61 @@ stati18n
 
 How It Works
 ---------
-#### STEP 1 : 
+#### <i class="icon-file"></i> STEP 1 : 
 Edit XML file to store your data.
 ```
 <?xml version='1.0' encoding='UTF-8'?>
 <stati18n>
-	<file>
-		<name>stati18n.css</name>
-		<minified>true</minified>
-	</file>
 
-	<language>
+	<host>
+		<name>CONTAIN URL OF YOUR SITE</name>
+	</host>
 
-		<text id='english'>
-			<translation lang='fr'>Anglais</translation>
-			<translation lang='en'>English</translation>
-		</text>
-	</language>
+    <file>
+        <name>stati18n</name>
+        <minified>false</minified>
+    </file>
+
+    <language>
+	
+		<text id='title'>
+            <translation lang='fr' fix='true'>Stati18n titre</translation>
+            <translation lang='en' fix='true'>Stati18n title</translation>
+            <translation lang='es' fix='true'>Stati18n título</translation>
+        </text>
+		
+		<text id='input'>
+            <translation lang='fr' fix='true'>Stati18n entrée</translation>
+            <translation lang='en' fix='true'>Stati18n input</translation>
+            <translation lang='es' fix='true'>Stati18n input</translation>
+        </text>
+	
+        <text id='hello-world' insertion='before'>
+            <translation lang='fr'>Démonstration de Stati18n</translation>
+            <translation lang='en'>Stati18n demonstration</translation>
+            <translation lang='es' deport='true'>Stati18n demostración</translation>
+        </text>
+
+        <text id='message'>
+            <translation lang='fr'>Salut salut</translation>
+            <translation lang='en'>Hello hello</translation>
+            <translation lang='es' deport='true'>Hi hi</translation>
+        </text>
+
+    </language>
 </stati18n>
+
 ```
-#### STEP 2 :
+**Properties :** 
+
+- **fix** : if true the value is added in the Dom can be useful for title tag or input .
+    - Possibilities : 'true' or 'false', default : 'false'. ***WARNING :*** prefer false for performance.
+- **deport** : deport CSS to an other file dedicated to this language. Useful for multiple translation or big translation. A new file is created and downloaded only if the user wants translation in this language.
+    - Possibilities : 'true' or 'false', default : 'false'.
+- **insertion** : choose the CSS property.
+    - Possibilities : 'before' or 'after', default : 'after'.  
+
+#### <i class="icon-file"></i> STEP 2 :
 Compile XML file to create CSS file which content all your data
 ```
 php stati18n.php stati18n.xml
@@ -44,25 +94,25 @@ The CSS file look like that (non-minified)
  * Licensed under MIT
  */
  
-.stati18n.fr.s18n-english:after {
+.stati18n.french.s18n-english:after {
     content: "Anglais";
 }
 
-.stati18n.en.s18n-english:after {
+.stati18n.english.s18n-english:after {
     content: "English";
 }
 
-.stati18n.fr.s18n-french:after {
+.stati18n.french.s18n-french:after {
     content: "Français";
 }
 
-.stati18n.en.s18n-french:after {
+.stati18n.english.s18n-french:after {
     content: "French";
 }
 
 ```
 
-#### STEP 3 : 
+#### <i class="icon-file"></i> STEP 3 : 
 Add to your html file
 ```
 <link rel="stylesheet" href="stati18n.css">
@@ -72,13 +122,32 @@ Add to your html file
 
 Use language switcher with class : "stati18n-language-selector" and value="language"
 ```
-<div class="stati18n-language-selector" value="en">English</div>
-<div class="stati18n-language-selector" value="fr">French</div>
+<div class="stati18n-language-selector" value="english">English</div>
+<div class="stati18n-language-selector" value="french">French</div>
 ```
 
-> **Tip:** The first language of the list will be the default language of your site. 
+> **Tip:** The first language of the list will be the default language of your site. If the language of browser user is not present in the site.
 
-And use it like that
+And use it like that:
+
+**Simple text**
+
+In your XML all your texts are marked with an id (example : ```<text id='your-id'>```). To add it in your HTML just add a class formed like that 's18n-your-id'
+
 ```
 <div class="stati18n s18n-english"></div>
+```
+
+**Title tag**
+
+To use i18n in title tag, do not forget to set ```fix="true"``` in XML file.
+```
+<title class="s18n-title">default title</title>
+```
+
+**Input tag**
+
+To use i18n in input tag, do not forget to set ```fix="true"``` in XML file.
+```
+<input type="text" class="s18n-input" value="default"/>
 ```
