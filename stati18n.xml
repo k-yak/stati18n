@@ -18,10 +18,10 @@
             <translation lang='es' fix='true'>Stati18n título</translation>
         </text>
 		
-		<text id='button'>
-            <translation lang='fr' fix='true'>Stati18n bouton</translation>
-            <translation lang='en' fix='true'>Stati18n button</translation>
-            <translation lang='es' fix='true'>Stati18n botón</translation>
+		<text id='input'>
+            <translation lang='fr' fix='true'>Stati18n entrée</translation>
+            <translation lang='en' fix='true'>Stati18n input</translation>
+            <translation lang='es' fix='true'>Stati18n input</translation>
         </text>
 	
         <text id='hello-world' insertion='before'>
