@@ -5,6 +5,34 @@
  * Licensed under MIT
  */
  
+function createCookie(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function getCookie(name) {
+    if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(name + "=");
+        if (c_start != -1) {
+            c_start = c_start + name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) {
+                c_end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start, c_end));
+        }
+    }
+    return "";
+}
+ 
 $( document ).ready(function() {
 	var userLanguage = navigator.language || navigator.userLanguage; 
 	var languageList = new Array();
@@ -34,12 +62,16 @@ $( document ).ready(function() {
 	
 	$('#stati18n-fixed-values').remove();
 	
-	var i = languageList.indexOf(userLanguage);
-	if( i > -1 )
+	userLanguage = getCookie("lang");
+	if(userLanguage == "")
 	{
-		userLanguage = languageList[i]
+		var i = languageList.indexOf(userLanguage);
+		if( i > -1 )
+		{
+			userLanguage = languageList[i]
+		}
+		else userLanguage = languageList[0];
 	}
-	else userLanguage = languageList[0];
 	
 	$('.stati18n').addClass(userLanguage);
 	updateStatic();
@@ -76,5 +108,6 @@ $( document ).ready(function() {
 		if (!$("link[href='"+file+"']").length && $.inArray(userLanguage, languages)>=0)
 			$('head').append('<link rel="stylesheet" href="'+file+'" type="text/css" />');
 		updateStatic();
+		createCookie("lang", userLanguage, 7);
 	});
 });
