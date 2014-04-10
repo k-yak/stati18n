@@ -1,6 +1,10 @@
 ﻿<?xml version='1.0' encoding='UTF-8'?>
 <stati18n>
 
+	<host>
+		<name></name>
+	</host>
+
     <file>
         <name>stati18n</name>
         <minified>false</minified>

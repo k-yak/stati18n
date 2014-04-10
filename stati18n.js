@@ -6,24 +6,37 @@
  */
  
 $( document ).ready(function() {
-	var ul = navigator.language || navigator.userLanguage; 
-	var l = new Array();
+	var userLanguages = navigator.language || navigator.userLanguage; 
+	var languageList = new Array();
 	
 	$('.stati18n-language-selector').each(function() {
-		l.push(this.getAttribute('value'));
+		languageList.push(this.getAttribute('value'));
 	});
 	
-	var i = l.indexOf(ul);
+	$('body').append('<div id="stati18n-infos"></div>');
+	
+	var infos = $("#stati18n-infos").css("content");
+	infos = infos.replace(/'/g, '');
+	var infos_tab = infos.split(" ");
+	
+	var host = infos_tab[0];
+	var languages = infos_tab.slice(1, infos_tab.length);
+	$('#stati18n-infos').remove();
+	
+	var i = languageList.indexOf(userLanguages);
 	if( i > -1 )
 	{
-		p = l[i]
+		userLanguages = languageList[i]
 	}
-	else p = l[0];
+	else userLanguages = languageList[0];
 	
-	$('.stati18n').addClass(p);
+	$('.stati18n').addClass(userLanguages);
 			
 	$('.stati18n-language-selector').click(function (e) {
-		$('.'+p).removeClass(p).addClass(this.getAttribute('value'));
-		p = this.getAttribute('value');
+		$('.'+userLanguages).removeClass(userLanguages).addClass(this.getAttribute('value'));
+		userLanguages = this.getAttribute('value');
+		var file = host+'stati18n-'+userLanguages+'.css';
+		if (!$("link[href='"+file+"']").length && $.inArray(userLanguages, languages)>=0)
+			$('head').append('<link rel="stylesheet" href="'+file+'" type="text/css" />');
 	});
 });

@@ -22,11 +22,44 @@ class FileManager{
 		return $fp;
 	}
 	
+	private function getDeported($xml)
+	{	
+		$listDeported = null;
+		foreach($xml->language->text as $text)
+			foreach($text->translation as $translation)
+				if(isset($translation['deport']) && $translation['deport'] == 'true')
+				{
+					$listDeported[(string)$translation['lang']] = true;
+				}
+		return $listDeported;
+	}
+	
 	public function createStati18n($xml)
 	{
 		$minify = ("true" == $xml->file->minified);
+		$host = $xml->host->name;
 		
 		$fps['main'] = $this->createCss($xml->file->name.'.css');
+		
+		$listDeported = $this->getDeported($xml);
+		$dep = '';
+		
+		foreach($listDeported as $key => $val)
+		{
+			$dep .= $key." ";
+		}
+
+		if(!$minify)
+		{
+			fwrite($fps['main'],"
+#stati18n-infos{
+	content  : '".$host.' '.$dep."';
+ }");
+		}
+		else
+		{
+			fwrite($fp,"#stati18n-infos{content:".$host.";}");
+		}
 		
 		foreach($xml->language->text as $text)
 		{

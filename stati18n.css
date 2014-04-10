@@ -5,6 +5,9 @@
  * Licensed under MIT
  */
  
+#stati18n-infos{
+	content  : ' es ';
+ }
 .stati18n.fr.s18n-hello-world:before {
     content: "Démonstration de Stati18n";
 }
