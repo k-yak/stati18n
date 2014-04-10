@@ -21,7 +21,7 @@ class FileManager{
  ");
 		return $fp;
 	}
-	
+		
 	private function getDeported($xml)
 	{	
 		$listDeported = null;
@@ -43,6 +43,8 @@ class FileManager{
 		
 		$listDeported = $this->getDeported($xml);
 		$dep = '';
+		
+		$fixTextMap = null;
 		
 		foreach($listDeported as $key => $val)
 		{
@@ -68,7 +70,6 @@ class FileManager{
 			
             if("before" != $insertion && "after" != $insertion)
             {
-                // Default after
                 $insertion = "after";
             }
 
@@ -78,6 +79,7 @@ class FileManager{
 				$language = (string)$translation['lang'];
 				$data = $translation[0];
 				$deport = false;
+				$fix = false;
 				$i = 'main';
 				
 				if(isset($translation['deport']))
@@ -92,21 +94,54 @@ class FileManager{
 					$i = $language;
 				}
 				
+				if(isset($translation['fix']))
+				{
+					$fix = ($translation['fix'] == 'true')?true:false;
+				}
 				
-				if(!$minify)
+				if($fix)
+				{
+					$fixTextMap[$language."§§".$id] = $data;
+				}
+				else if(!$minify)
 				{
 					fwrite($fps[$i], "
 .stati18n.".$language.".s18n-".$id.":".$insertion." {
     content: \"".$data."\";
 }
-");
+");					
 				}
 				else
 				{
 					fwrite($fps[$i], ".stati18n.".$language.".s18n-".$id.":".$insertion."{content:\"".$data."\";}");
 				}
-			
 			}
+		}
+		
+		if(!$minify)
+		{
+			fwrite($fps['main'], "
+#stati18n-fixed-values {
+    content: '");
+		}
+		else
+		{
+			fwrite($fps['main'], "#stati18n-fixed-values{content:'");
+		}
+		
+		foreach($fixTextMap as $key => $value)
+		{
+			fwrite($fps['main'], $key.'§§'.$value.';;');
+		}
+		
+		if(!$minify)
+		{
+			fwrite($fps['main'], "'
+};");
+		}
+		else
+		{
+			fwrite($fps['main'], "'};");
 		}
 		
 		foreach($fps as $fp)

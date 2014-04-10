@@ -12,6 +12,18 @@
 
     <language>
 	
+		<text id='title'>
+            <translation lang='fr' fix='true'>Stati18n titre</translation>
+            <translation lang='en' fix='true'>Stati18n title</translation>
+            <translation lang='es' fix='true'>Stati18n título</translation>
+        </text>
+		
+		<text id='button'>
+            <translation lang='fr' fix='true'>Stati18n bouton</translation>
+            <translation lang='en' fix='true'>Stati18n button</translation>
+            <translation lang='es' fix='true'>Stati18n botón</translation>
+        </text>
+	
         <text id='hello-world' insertion='before'>
             <translation lang='fr'>Démonstration de Stati18n</translation>
             <translation lang='en'>Stati18n demonstration</translation>
