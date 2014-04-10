@@ -4,7 +4,6 @@
     <file>
         <name>stati18n.css</name>
         <minified>false</minified>
-		<insertion>before</insertion>
     </file>
 
     <language>
@@ -13,7 +12,7 @@
             <translation lang='en'>My site</translation>
         </title>
         
-        <text id='hello-world'>
+        <text id='hello-world' insertion='before'>
             <translation lang='fr'>Démonstration de Stati18n</translation>
             <translation lang='en'>Stati18n demonstration</translation>
         </text>
