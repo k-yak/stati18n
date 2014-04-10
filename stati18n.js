@@ -30,12 +30,16 @@ function getCookie(name) {
             return unescape(document.cookie.substring(c_start, c_end));
         }
     }
-    return "";
+    return undefined;
 }
  
 $( document ).ready(function() {
-	var userLanguage = navigator.language || navigator.userLanguage; 
 	var languageList = new Array();
+	var userLanguage = getCookie("lang");
+	if(userLanguage == undefined)
+	{
+		userLanguage = navigator.language || navigator.userLanguage; 
+	}
 	
 	$('.stati18n-language-selector').each(function() {
 		languageList.push(this.getAttribute('value'));
@@ -62,15 +66,15 @@ $( document ).ready(function() {
 	
 	$('#stati18n-fixed-values').remove();
 	
-	userLanguage = getCookie("lang");
-	if(userLanguage == "")
+	
+	var i = languageList.indexOf(userLanguage);
+	if( i > -1 )
 	{
-		var i = languageList.indexOf(userLanguage);
-		if( i > -1 )
-		{
-			userLanguage = languageList[i]
-		}
-		else userLanguage = languageList[0];
+		userLanguage = languageList[i]
+	}
+	else
+	{
+		userLanguage = languageList[0];
 	}
 	
 	$('.stati18n').addClass(userLanguage);
