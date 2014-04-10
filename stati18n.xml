@@ -2,20 +2,22 @@
 <stati18n>
 
     <file>
-        <name>stati18n.css</name>
+        <name>stati18n</name>
         <minified>false</minified>
     </file>
 
     <language>
 	
-        <text id='hello-world'>
+        <text id='hello-world' insertion='before'>
             <translation lang='fr'>Démonstration de Stati18n</translation>
             <translation lang='en'>Stati18n demonstration</translation>
+            <translation lang='es' deport='true'>Stati18n demostración</translation>
         </text>
 
         <text id='message'>
             <translation lang='fr'>Salut salut</translation>
             <translation lang='en'>Hello hello</translation>
+            <translation lang='es' deport='true'>Hi hi</translation>
         </text>
 
     </language>
