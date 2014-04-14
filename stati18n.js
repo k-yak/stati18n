@@ -106,6 +106,9 @@ $( document ).ready(function() {
 	/****** EVENTS ******/ 
 				
 	$('.stati18n-language-selector').click(function (e) {
+		// If the language is one that is already displayed
+		if(userLanguage == this.getAttribute('value'))
+			return;
 		$('.'+userLanguage).removeClass(userLanguage).addClass(this.getAttribute('value'));
 		userLanguage = this.getAttribute('value');
 		var file = host+'stati18n-'+userLanguage+'.css';
