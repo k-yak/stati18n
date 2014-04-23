@@ -4,26 +4,4 @@
  * Created by Florian Rotagnon
  * Licensed under MIT
  */
- 
-#stati18n-infos{
-	content  : ' es ';
- }
-.stati18n.fr.s18n-hello-world:before {
-    content: "Démonstration de Stati18n";
-}
-
-.stati18n.en.s18n-hello-world:before {
-    content: "Stati18n demonstration";
-}
-
-.stati18n.fr.s18n-message:after {
-    content: "Salut salut";
-}
-
-.stati18n.en.s18n-message:after {
-    content: "Hello hello";
-}
-
-#stati18n-fixed-values {
-    content: 'fr§§title§§Stati18n titre;;en§§title§§Stati18n title;;es§§title§§Stati18n título;;fr§§input§§Stati18n entrée;;en§§input§§Stati18n input;;es§§input§§Stati18n input;;'
-};
+ #stati18n-infos{content:;}.stati18n.fr.s18n-hello-world:before{content:"Démonstration de Stati18n";}.stati18n.en.s18n-hello-world:before{content:"Stati18n demonstration";}.stati18n.es.s18n-hello-world:before{content:"Stati18n demostración";}.stati18n.fr.s18n-message:after{content:"Salut salut";}.stati18n.en.s18n-message:after{content:"Hello hello";}#stati18n-fixed-values{content:'fr§§input§§Stati18n entrée;;en§§input§§Stati18n input;;fr§§title§§Stati18n titre;;en§§title§§Stati18n title;;es§§title§§Stati18n título;;es§§input§§Stati18n input;;'};

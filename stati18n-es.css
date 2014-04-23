@@ -4,11 +4,4 @@
  * Created by Florian Rotagnon
  * Licensed under MIT
  */
- 
-.stati18n.es.s18n-hello-world:before {
-    content: "Stati18n demostración";
-}
-
-.stati18n.es.s18n-message:after {
-    content: "Hi hi";
-}
+ .stati18n.es.s18n-message:after{content:"Hi hi";}

@@ -23,7 +23,7 @@ class FileManager{
 	}
 		
 	private function getDeported($xml)
-	{	
+	{
 		$listDeported = null;
 		foreach($xml->language->text as $text)
 			foreach($text->translation as $translation)
@@ -78,13 +78,11 @@ class FileManager{
 				
 				$language = (string)$translation['lang'];
 				$data = $translation[0];
-				$deport = false;
 				$fix = false;
 				$i = 'main';
 				
-				if(isset($translation['deport']))
+				if(isset($translation['deport']) && ($translation['deport'] == 'true'))
 				{
-					$deport = ($translation['deport'] == 'true')?true:false;
 
 					if(!isset($fps[$language]))
 					{
@@ -150,7 +148,7 @@ class FileManager{
 }
 
 /*Script start*/
-if (2 !== $argc) {
+if (2 != $argc) {
     echo "Usage: php $argv[0] [name.xml]\n";
     exit(1);
 }

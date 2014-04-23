@@ -7,7 +7,7 @@
 
     <file>
         <name>stati18n</name>
-        <minified>false</minified>
+        <minified>true</minified>
     </file>
 
     <language>
@@ -27,7 +27,7 @@
         <text id='hello-world' insertion='before'>
             <translation lang='fr'>Démonstration de Stati18n</translation>
             <translation lang='en'>Stati18n demonstration</translation>
-            <translation lang='es' deport='true'>Stati18n demostración</translation>
+            <translation lang='es' deport='false'>Stati18n demostración</translation>
         </text>
 
         <text id='message'>
