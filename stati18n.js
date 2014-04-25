@@ -42,7 +42,10 @@ $( document ).ready(function() {
 	}
 	
 	$('.stati18n-language-selector').each(function() {
-		languageList.push(this.getAttribute('value'));
+        var lang = this.getAttribute('value');
+		languageList.push(lang);
+        /// To remove the default language put by the user in case the javascript is not activated.
+	    $('.stati18n').removeClass(lang);
 	});
 	
 	//get info about css files
@@ -76,7 +79,6 @@ $( document ).ready(function() {
 	{
 		userLanguage = languageList[0];
 	}
-	
 	$('.stati18n').addClass(userLanguage);
 	updateStatic();
 	
