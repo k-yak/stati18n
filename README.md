@@ -11,13 +11,15 @@ stati18n
 - Add title tag management 
 - Add input value management
 - Choose between CSS before and after property in your XML file
+- Cookie manageùent
+- Code refactoring
+- Auto-loading of CSS file on click 
 
 ----------
 **Todo :**
 
-- Code refactoring
-- Referencing managment 
-- Cookie
+- Referencing managment
+- Only one DOM line change on click (performance)
 
 ----------
 #### demo : http://k-yak.github.io/one_page_presentation/
