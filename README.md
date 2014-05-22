@@ -2,7 +2,12 @@ stati18n
 =====================
 
 
-**stati18n** is a simply tool to manage static pages internationalization. It is based on content property of CSS, creating CSS data file. To change language a basic script simply change class of each DOM element. 
+**stati18n** is a tool to manage static pages internationalization. It is based on content property of CSS, creating CSS data file. To change language a basic script simply change class of each DOM element. 
+
+**Why it's cool**
+- For static site
+- You can change language without refresh
+- The data is downloaded only on use, with auto-loading of CSS file
 
 ----------
 **News :**
@@ -11,15 +16,16 @@ stati18n
 - Add title tag management 
 - Add input value management
 - Choose between CSS before and after property in your XML file
-- Cookie manageùent
+- Cookie management
 - Code refactoring
 - Auto-loading of CSS file on click 
+- Rewrite PHP script in Python
 
 ----------
 **Todo :**
 
-- Referencing managment
-- Only one DOM line change on click (performance)
+- Referencing managment : the default language is directly copied in HTML file
+- Only one DOM line change on click : the CSS class is always the same, we only change CSS include line (better performance)
 
 ----------
 #### demo : http://k-yak.github.io/one_page_presentation/
@@ -84,6 +90,10 @@ Edit XML file to store your data.
 
 #### <i class="icon-file"></i> STEP 2 :
 Compile XML file to create CSS file which content all your data
+```
+python stati18n.py stati18n.xml
+```
+OR
 ```
 php stati18n.php stati18n.xml
 ```
