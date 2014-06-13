@@ -2,7 +2,7 @@ stati18n v0.2
 =====================
 
 
-**stati18n** is a tool to manage static pages internationalization. It is based on content property of CSS, creating CSS data file. To change language a basic script simply change class of each DOM element. 
+**stati18n** is a tool to manage static pages internationalization. It is based on content property of CSS, creating CSS data files. To change language a basic script simply change css included file. 
 
 **Politic** stop Nervous BreakDom. Only one Dom line change (css include). 
 
