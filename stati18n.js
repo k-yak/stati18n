@@ -1,5 +1,5 @@
 /*!
- * Stati18n v0.0.1
+ * Stati18n v0.2
  * stati18n.js
  * Created by Florian Rotagnon
  * Licensed under MIT
@@ -35,26 +35,29 @@ function getCookie(name) {
  
 $( document ).ready(function() {
 	var languageList = new Array();
-	var userLanguage = getCookie("lang");
-	if(userLanguage == undefined)
-	{
-		userLanguage = navigator.language || navigator.userLanguage; 
-	}
-	
-	$('.stati18n-language-selector').each(function() {
+    var defaultUserLanguage = 'en';
+    $('link[rel="stylesheet"]').each(function(){
+        var fileName = $(this).attr('href');
+        if( fileName != "stati18n.css" && fileName.indexOf("stati18n") > -1 )
+            defaultUserLanguage = fileName.slice(9, -4);
+            alert(defaultUserLanguage);
+    });
+    
+	var userLanguage = defaultUserLanguage;
+    
+    $('.stati18n-language-selector').each(function() {
 		languageList.push(this.getAttribute('value'));
 	});
-	
 	//get info about css files
 	$('body').append('<div id="stati18n-infos" style="display:none;"></div>');
 	
 	var infos = $("#stati18n-infos").css("content");
-	//TODO change for slice
 	infos = infos.slice(1, infos.length-1);
-	var infosTab = infos.split(" ");
-	
+
+	var infosTab = infos.split(" ");	
 	var host = infosTab[0];
 	var languages = infosTab.slice(1, infosTab.length);
+    
 	$('#stati18n-infos').remove();
 	
 	//get static content
@@ -66,7 +69,6 @@ $( document ).ready(function() {
 	
 	$('#stati18n-fixed-values').remove();
 	
-	
 	var i = languageList.indexOf(userLanguage);
 	if( i > -1 )
 	{
@@ -77,7 +79,13 @@ $( document ).ready(function() {
 		userLanguage = languageList[0];
 	}
 	
-	$('.stati18n').addClass(userLanguage);
+    var newUserLanguage = getCookie("lang");
+	if(newUserLanguage == undefined)
+	{
+		newUserLanguage = navigator.language || navigator.userLanguage; 
+	}
+    
+    changeLanguage(newUserLanguage)
 	updateStatic();
 	
 	/****** FUNCTION ******/ 
@@ -90,6 +98,7 @@ $( document ).ready(function() {
 			var line = fixedTab[ind];
 			var lineSplit = line.split("§§");
 			var currentLanguage = lineSplit[0];
+            
 			if(currentLanguage == userLanguage)
 			{
 				var id = lineSplit[1];
@@ -103,18 +112,30 @@ $( document ).ready(function() {
 		}
 	}
 	
+    //Modify language
+    function changeLanguage(newLanguage)
+    {
+        // If the language is one that is already displayed
+		if(userLanguage == newLanguage)
+			return;
+        var precUserLanguage = userLanguage
+		userLanguage = newLanguage;
+        
+		var precFile = host+'stati18n-'+precUserLanguage+'.css';
+		var file = host+'stati18n-'+userLanguage+'.css';
+        
+		if (!$("link[href='"+file+"']").length && $.inArray(userLanguage, languages)>=0)
+        {
+            $("link[href='"+precFile+"']").remove();
+			$('head').append('<link rel="stylesheet" href="'+file+'" type="text/css" />');
+        }
+		updateStatic();
+		createCookie("lang", userLanguage, 7);
+    }
+    
 	/****** EVENTS ******/ 
 				
 	$('.stati18n-language-selector').click(function (e) {
-		// If the language is one that is already displayed
-		if(userLanguage == this.getAttribute('value'))
-			return;
-		$('.'+userLanguage).removeClass(userLanguage).addClass(this.getAttribute('value'));
-		userLanguage = this.getAttribute('value');
-		var file = host+'stati18n-'+userLanguage+'.css';
-		if (!$("link[href='"+file+"']").length && $.inArray(userLanguage, languages)>=0)
-			$('head').append('<link rel="stylesheet" href="'+file+'" type="text/css" />');
-		updateStatic();
-		createCookie("lang", userLanguage, 7);
+		changeLanguage(this.getAttribute('value'));
 	});
 });
