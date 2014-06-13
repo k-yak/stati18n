@@ -118,7 +118,7 @@ class FileManager:
 
 #Script start
 if 2 != len(sys.argv):
-    print("Usage: python $argv[0] [name.xml]")
+    print("Usage: python "+sys.argv[0]+" [name.xml]")
     exit(1)
 
 try:
