@@ -31,7 +31,7 @@ stati18n v0.2
 ----------
 **Todo :**
 
-- Referencing managment : the default language is directly copied in HTML file ? 
+- SEO managment : Google index js and css, but what about SEO performance ?  
 - Graphic tool to create everything
 
 ----------
