@@ -40,6 +40,7 @@ $( document ).ready(function() {
         var fileName = $(this).attr('href');
         if( fileName != "stati18n.css" && fileName.indexOf("stati18n") > -1 )
             defaultUserLanguage = fileName.slice(9, -4);
+            alert(defaultUserLanguage);
     });
     
 	var userLanguage = defaultUserLanguage;
