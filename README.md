@@ -58,13 +58,13 @@ Edit XML file to store your data.
 
     <language>
 	
-		<text id='title'>
+        <text id='title'>
             <translation lang='fr' fix='true'>Stati18n titre</translation>
             <translation lang='en' fix='true'>Stati18n title</translation>
             <translation lang='es' fix='true'>Stati18n título</translation>
         </text>
 		
-		<text id='input'>
+        <text id='input'>
             <translation lang='fr' fix='true'>Stati18n entrée</translation>
             <translation lang='en' fix='true'>Stati18n input</translation>
             <translation lang='es' fix='true'>Stati18n input</translation>
@@ -98,7 +98,6 @@ Compile XML file to create CSS file which content all your data
 ```
 python stati18n.py stati18n.xml
 ```
-```
 The CSS file look like that (non-minified)
 ```
  /*!
@@ -115,8 +114,6 @@ The CSS file look like that (non-minified)
 .stati18n.s18n-french:after {
     content: "Français";
 }
-
-
 ```
 
 #### <i class="icon-file"></i> STEP 3 : 
