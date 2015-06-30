@@ -60,9 +60,9 @@ class FileManager:
 
         if not minify:
             #fps['main'].write("\n#stati18n-infos{\n	content  : '" + host + ' ' + dep + "';\n}")
-            fps['main'].write("\n#stati18n-infos{\n	content  : '" + host + dep + "';\n}")
+            fps['main'].write("\n#stati18n-infos{\n\tcontent  : '" + host + dep + "';\n\tcustomContent  : '" + host + dep + "';\n}")
         else:
-            fps['main'].write("#stati18n-infos{content:" + host + dep + ";}")
+            fps['main'].write("#stati18n-infos{content:" + host + dep + ";customContent:" + host + dep + ";}")
 
         for text in xml.iter('text'):
             id = text.get('id')
@@ -99,19 +99,15 @@ class FileManager:
                     + ":" + insertion
                     + "{content:\"" + data.text
                     + "\";}")
-
-        if not minify:
-            fps['main'].write("\n#stati18n-fixed-values {\n\tcontent: '")
-        else:
-            fps['main'].write("#stati18n-fixed-values{content:'")
-
+        data = ''
         for key in fix_text_map:
-            fps['main'].write(key + '§§' + fix_text_map[key] + ';;')
+            data += key + '§§' + fix_text_map[key] + ';;'
 
         if not minify:
-            fps['main'].write("'\n};")
+            fps['main'].write("\n#stati18n-fixed-values {\n\tcontent: '"+data+"';\n\tcustomContent: '"+data+"';\n}")
         else:
-            fps['main'].write("'};")
+            fps['main'].write("#stati18n-fixed-values{content:'"+data+"';customContent:'"+data+"';}")
+
 
         for fp in fps:
             fps[fp].close()
@@ -127,4 +123,4 @@ try:
 except FileNotFoundError:
     print("File not found : " + sys.argv[1])
 else:
-    print("Stati18n  : compilation success")
+    print("Stati18n  : parsing success")
